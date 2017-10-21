@@ -1,0 +1,30 @@
+version: "3"
+services:
+  php:
+   image: raymatos/nginx-fpm-php
+   environment:
+    - GIT_EMAIL=matos.ray@gmail.com
+    - GIT_NAME=Ray Matos
+    - GIT_USERNAME=raymatos
+    - GIT_REPO=github.com/raymatos/testphp
+    - DB_HOST=mariadb:3306
+   ports:
+    - 80:7001
+    - 443:7002
+    - 9000:7003
+   depends_on:
+    - mariadb
+   restart: always
+  mariadb:
+   image: mariadb
+   volumes:
+    - db_data:/var/lib/mysql
+   environment:
+    - MYSQL_ROOT_PASSWORD=welcome123
+    - MYSQL_DATABASE=nextpost
+    - MYSQL_USER=nextpost_user
+    - MYSQL_PASSWORD=E3LX3ZUqNgYXAPFC
+   restart: always
+
+volumes:
+    db_data:
